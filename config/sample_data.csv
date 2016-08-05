@@ -1,3 +1,6 @@
-7, 5.44, aa, bb, ccd, xyz
-7, 3, aa, bb, ccd, a, b
-7, 30, xyz
+7, 4, li, w, q, i, o, aa
+7, 33, li, bb, xyz, a, b, c
+7, 0.1, a, c
+7, 0.01, b
+7, 0.3, a, b, c
+7, 45, a, c

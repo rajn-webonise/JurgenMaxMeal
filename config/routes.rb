@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'static_pages/home'
 
   get 'static_pages/help'
+  
+  get '/search', to: 'static_pages#search'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

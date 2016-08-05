@@ -17,7 +17,6 @@ class StaticPagesController < ApplicationController
             contains+=1
             input.delete data[current_menu_id][current_item_id]
           end
-        
           
       end
       
@@ -26,13 +25,10 @@ class StaticPagesController < ApplicationController
         #debugger
       end
       
-      #debugger if selected.size==1 && selected[0]==2
 
     end
       
   
-    
-    
     
   end
   
@@ -66,14 +62,19 @@ class StaticPagesController < ApplicationController
   end
   
   def home
-        data = CSV.read("config/sample_data.csv")
+        
+  end
+
+  def help
+  end
+  
+  def search
+      data = CSV.read("config/sample_data.csv")
         params["answer"]=999
         #debugger
         answer = solve(data, [" xyz"])
         #debugger
         render text: data.to_s + "<br><br>" + params["answer"].to_s
   end
-
-  def help
-  end
+  
 end

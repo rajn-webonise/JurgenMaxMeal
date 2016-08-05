@@ -1,28 +1,40 @@
-== README
+== Jurgen Meal Max
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This app finds the cheapest combination of meals for your pleasure!
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+How to use it? 
+
+* Place the seed data in /config/ folder. Name it "sample_data.csv"
+
+
+* Run "rails s -b $IP -p $PORT" if you're using C9. Otherwise, simply run "rails s".
+
+* Input in the textbox, the name of the items you'd like to eat
+
+
+== Architecture
+
+* The requests are routed by /config/routes.rb to the specific controller.
+
+* Only a single controller StaticPages is used here. It is placed in /app/controller folder.
+
+* The in-built CSV parser reads the given input file placed in /config/ folder
+
+
+
+== Search Algorithm
+
+* The function algorithm() generates all possible combinations of a meal (2^n for n meals) for a particular restaurant.
+
+* These combinations are checked for validity by the checkformin() function.
+
+* If valid, the total cost of this combination is checked. If it is lower, then the min value is updated.
+
+== TO DO List
+
+* Create a normalized database to store and retrive the restaurant's data instead of querying the CSV file.
+
+* Create a cleaner UI using bootstrap and AJAX.
+
+* Optimize the algorithm to eliminate overlapping cases.
