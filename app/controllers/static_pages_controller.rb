@@ -2,20 +2,21 @@
 class StaticPagesController < ApplicationController
   
   def checkifmin(data, input, selected)
-    #debugger
-    inputsize = input.size
+    #debugger if !selected.include? 6
+    inputs = input.clone
+    inputsize = inputs.size
     cost = 0
     contains = 0
-    #debugger if selected.size==1 && selected[0]==2
+    
     selected.each do |current_menu_id|
     
       cost += data[current_menu_id][1].to_f
-      #debugger
+      
       for current_item_id in 2..(data[current_menu_id].size-1) 
         
-          if input.include? data[current_menu_id][current_item_id]
+          if inputs.include? data[current_menu_id][current_item_id]
             contains+=1
-            input.delete data[current_menu_id][current_item_id]
+            inputs.delete data[current_menu_id][current_item_id]
           end
           
       end
@@ -25,13 +26,11 @@ class StaticPagesController < ApplicationController
         #debugger
       end
       
-
     end
       
-  
-    
   end
   
+  # This algorithm generates all possible inputs
   def algorithm(data, input, selected, depth)
     
     if depth >= data.size
@@ -48,17 +47,16 @@ class StaticPagesController < ApplicationController
     selected.pop
     
     algorithm(data, input, selected, depth+1)
-    
+    #debugger if input.size==0
     checkifmin(data, input, selected)
       
   end
   
-  
-  def solve(data, input)
+  def solve(datas, input)
     selected = Array.new
-    algorithm(data, input, selected, 0)
-    #debugger
-    
+
+    algorithm(datas, input, selected, 0)
+  
   end
   
   def home
@@ -70,11 +68,11 @@ class StaticPagesController < ApplicationController
   
   def search
       data = CSV.read("config/sample_data.csv")
-        params["answer"]=999
-        #debugger
-        answer = solve(data, [" xyz"])
-        #debugger
-        render text: data.to_s + "<br><br>" + params["answer"].to_s
+      params["answer"]=999
+
+      answer = solve(data, params["q"].split(","))
+
+      render text: data.to_s + "<br><br>Minimum cost: " + params["answer"].to_s
   end
   
 end
