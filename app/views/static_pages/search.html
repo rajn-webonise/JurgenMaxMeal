@@ -1,12 +1,9 @@
-<h1>JurgenMaxMeal#Home</h1>
+<h1>JurgenMaxMeal#Search</h1>
 
 
-<%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
-  <%= label_tag(:q, "Make sure to add space after an item. Like this \"water burger pizza \"") %>
-<% end %>
+<%= params["output"] %>
+
+
 
 <br><br>
 <font style = "padding: 15px">  RestaurantID</font>

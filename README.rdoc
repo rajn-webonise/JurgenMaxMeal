@@ -3,14 +3,13 @@
 This app finds the cheapest combination of meals for your pleasure!
 
 
-How to use it? 
+How to use it?
 
 * Place the seed data in /config/ folder. Name it "sample_data.csv"
 
-
 * Run "rails s -b $IP -p $PORT" if you're using C9. Otherwise, simply run "rails s".
 
-* Input in the textbox, the name of the items you'd like to eat
+* Input in the textbox, the name of the items you'd like to eat with space in between. ("Burger water tofu_log")
 
 
 == Architecture
@@ -21,20 +20,22 @@ How to use it?
 
 * The in-built CSV parser reads the given input file placed in /config/ folder
 
+* The database is structured as: Restaurant class (with title), Menu class (with RestaurantID, price), and Item class (name, MenuID).
+
 
 
 == Search Algorithm
 
-* The function algorithm() generates all possible combinations of a meal (2^n for n meals) for a particular restaurant.
+* The search() function generates all possible combinations of a meal (2^n for n meals) for a particular restaurant.
 
-* These combinations are checked for validity by the checkformin() function.
+* These combinations are checked for validity by the combo_cost_evaluator() function.
 
 * If valid, the total cost of this combination is checked. If it is lower, then the min value is updated.
 
 == TO DO List
 
-* Create a normalized database to store and retrive the restaurant's data instead of querying the CSV file.
+* Create a normalized database to store and retrive the restaurant's data instead of querying the CSV file. [COMPLETED]
 
 * Create a cleaner UI using bootstrap and AJAX.
 
-* Optimize the algorithm to eliminate overlapping cases.
+* Optimize the algorithm to eliminate overlapping cases. [COMPLETED]
