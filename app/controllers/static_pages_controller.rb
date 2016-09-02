@@ -1,7 +1,6 @@
 
 class StaticPagesController < ApplicationController
 
-
   def home
   end
 
@@ -19,7 +18,6 @@ class StaticPagesController < ApplicationController
         if inputs.include? item.name
           inputs.delete item.name
         end
-
       end
     end
     if inputs.size!=0
@@ -37,14 +35,16 @@ class StaticPagesController < ApplicationController
     # Loop through every restaurant.
     rids.each do |rid|
       m = Menu.select("id", "price").where(rid: rid)
-      #debugger
+
       #Try every possible combination of menu in a restaurant
       #Combinations of different lengths
-      for combo_size in 1..m.size-1
-        current_combo_lot = m.combination(combo_size).to_a
+      for combo_size in 1..m.size
 
+        current_combo_lot = m.combination(combo_size).to_a
+        #byebug
         current_combo_lot.each do |current_combo|
           current_combo_cost = combo_cost_evaluator(current_combo)
+
           if (current_combo_cost>0 && (minimum_cost<0 || minimum_cost > current_combo_cost))
             minimum_cost = current_combo_cost
             minimum_mids.clear
@@ -61,7 +61,7 @@ class StaticPagesController < ApplicationController
     else
       params["output"] = "Sorry, no restaurant serves this combination!"
     end
-    #  answer = solve(data, params["q"].split(","))#  render text: data.to_s + "<br><br>Minimum cost: " + params["answer"].to_s
+
   end
 
 end

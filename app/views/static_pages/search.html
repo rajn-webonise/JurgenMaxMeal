@@ -12,7 +12,7 @@
 
  <br> <hr><br>
 
-<% CSV.foreach("config/sample_data.csv") do |row| %>
+<% CSV.foreach(Rails.application.config.data_file) do |row| %>
 <%  row.map!(&:lstrip) %>
 
 <% i=0 %>

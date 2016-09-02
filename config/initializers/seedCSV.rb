@@ -7,10 +7,11 @@ Restaurant.delete_all
 Menu.delete_all
 Item.delete_all
 
-CSV.foreach("config/sample_data.csv") do |row|
+CSV.foreach(Rails.application.config.data_file) do |row|
   row.map!(&:lstrip)
 
   rid = 0
+
   if Restaurant.where(title: row[0]).blank?
     rid = Restaurant.create(title: row[0]).id
   else
@@ -32,4 +33,3 @@ CSV.foreach("config/sample_data.csv") do |row|
   end
 
 end
-#debugger
